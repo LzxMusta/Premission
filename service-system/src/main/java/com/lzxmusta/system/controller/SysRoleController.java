@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzxmusta.common.result.Result;
 import com.lzxmusta.model.system.SysRole;
 import com.lzxmusta.model.vo.SysRoleQueryVo;
+import com.lzxmusta.system.execption.LzxmustaException;
 import com.lzxmusta.system.service.SysRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -83,6 +84,12 @@ public class SysRoleController {
     //Swagger2的方法注解
     @GetMapping("findAll")
     public Result findAll() {
+        //测试自定义异常
+//        try {
+//            int a = 10/0;
+//        }catch(Exception e) {
+//            throw new LzxmustaException(20001,"出现自定义异常");
+//        }
         List<SysRole> list = sysRoleService.list();
         return Result.ok(list);
     }
