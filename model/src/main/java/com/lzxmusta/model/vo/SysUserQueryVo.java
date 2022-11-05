@@ -1,6 +1,6 @@
 //
 //
-package com.lzxmusta.system.model.vo;
+package com.lzxmusta.model.vo;
 
 
 import lombok.Data;

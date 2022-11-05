@@ -15,6 +15,6 @@ public class AssginMenuVo {
     private String roleId;
 
     @ApiModelProperty(value = "菜单id列表")
-    private List<String> menuIdList;
+    private List<Long> menuIdList;
 
 }
