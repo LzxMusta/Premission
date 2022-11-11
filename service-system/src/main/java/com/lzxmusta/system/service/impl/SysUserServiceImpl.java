@@ -77,7 +77,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public Map<String, Object> getUserInfo(String username) {
         Map<String, Object> result = new HashMap<>();
         result.put("name", username);
-        result.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80");
+        result.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?");
         result.put("roles", "[\"admin\"]");
         //菜单权限数据
         LambdaQueryWrapper<SysUser> userWrapper = new LambdaQueryWrapper<>();
@@ -85,6 +85,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         SysUser sysUser = sysUserMapper.selectOne(userWrapper);
         //通过用户id获取菜单权限
         List<RouterVo> sysMenuList = sysMenuService.findUserMenuList(sysUser.getId());
+//        System.out.println(sysMenuList);
         //通过用户id查按钮权限
         List<String> userButtonList = sysMenuService.findUserButtonList(sysUser.getId());
         //菜单权限数据

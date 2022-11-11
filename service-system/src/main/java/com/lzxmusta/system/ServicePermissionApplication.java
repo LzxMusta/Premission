@@ -3,6 +3,7 @@ package com.lzxmusta.system;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @ClassName ServicePermissionApplication
@@ -16,6 +17,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages ="com.lzxmusta.system.mapper")
 public class ServicePermissionApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServicePermissionApplication.class,args);
+        ConfigurableApplicationContext run = SpringApplication.run(ServicePermissionApplication.class, args);
     }
 }

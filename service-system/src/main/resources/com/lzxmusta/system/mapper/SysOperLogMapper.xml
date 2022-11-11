@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lzxmusta.system.mapper.SysOperLogMapper">
+
+    <resultMap id="sysOperLogMap" type="com.lzxmusta.model.system.SysOperLog" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,title,business_type,method,request_method,operator_type,oper_name,dept_name,oper_url,oper_ip,oper_param,json_result,status,error_msg,oper_time,create_time,update_time,is_deleted
+    </sql>
+
+    <sql id="findPageWhere">
+        <where>
+            <if test="sysOperLogQueryVo.title != null and sysOperLogQueryVo.title != ''">
+                and title like CONCAT('%',#{sysOperLogQueryVo.title},'%')
+            </if>
+            <if test="sysOperLogQueryVo.operName != null and sysOperLogQueryVo.operName != ''">
+                and oper_name like CONCAT('%',#{sysOperLogQueryVo.operName},'%')
+            </if>
+            <if test="sysOperLogQueryVo.createTimeBegin != null and sysOperLogQueryVo.createTimeBegin != ''">
+                and create_time >= #{sysOperLogQueryVo.createTimeBegin}
+            </if>
+            <if test="sysOperLogQueryVo.createTimeEnd != null and sysOperLogQueryVo.createTimeEnd != ''">
+                and create_time &lt;= #{sysOperLogQueryVo.createTimeEnd}
+            </if>
+            and is_deleted = 0
+        </where>
+    </sql>
+
+    <select id="selectPage1" resultMap="sysOperLogMap">
+        select <include refid="columns" />
+        from sys_oper_log
+        <include refid="findPageWhere"/>
+        order by id desc
+    </select>
+
+</mapper>
